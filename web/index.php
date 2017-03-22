@@ -28,7 +28,7 @@ $app->register(new Herrera\Pdo\PdoServiceProvider(),
 
 $app->get('/', function() use($app) {
   $app['monolog']->addDebug('logging output.');
-  return str_repeat('Hello', getenv('TIMES'));
+  return str_repeat('Hello ', getenv('TIMES'));
 });
 
 $app->get('/db/', function() use($app) {
@@ -47,7 +47,7 @@ $app->get('/db/', function() use($app) {
 });
 
 $app->get('/prijava', function() use($app) {
-  return $_GET["email"];
+  return $_POST["email"];
 });
 
 $app->run();
