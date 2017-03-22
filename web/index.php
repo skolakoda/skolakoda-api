@@ -31,7 +31,7 @@ $app->get('/', function() use($app) {
   return str_repeat('Hello ', getenv('TIMES'));
 });
 
-$app->get('/db/', function() use($app) {
+$app->get('/korisnici', function() use($app) {
   $st = $app['pdo']->prepare('SELECT email FROM korisnici');
   $st->execute();
 
