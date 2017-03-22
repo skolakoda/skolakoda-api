@@ -48,9 +48,10 @@ $app->get('/db/', function() use($app) {
 
 $app->post('/prijava', function() use($app) {
   $email = $_POST["email"];
+  $referer = $_SERVER['HTTP_REFERER'];
   $st = $app['pdo']->prepare("insert into korisnici (email) values ('$email');");
   $st->execute();
-  return "Email je sacuvan. Nazad na $_SERVER['HTTP_REFERER']";
+  return "Email je sacuvan. Nazad na $referer";
 });
 
 $app->run();
