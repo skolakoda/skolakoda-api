@@ -37,12 +37,12 @@ $app->get('/cowsay', function() use($app) {
 });
 
 $app->get('/db/', function() use($app) {
-  $st = $app['pdo']->prepare('SELECT name FROM test_table');
+  $st = $app['pdo']->prepare('SELECT email FROM korisnici');
   $st->execute();
 
   $names = array();
   while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-    $app['monolog']->addDebug('Row ' . $row['name']);
+    $app['monolog']->addDebug('Row ' . $row['email']);
     $names[] = $row;
   }
 
