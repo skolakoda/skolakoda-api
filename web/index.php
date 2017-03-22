@@ -50,7 +50,7 @@ $app->post('/prijava', function() use($app) {
   $email = $_POST["email"];
   $st = $app['pdo']->prepare("insert into korisnici (email) values ('$email');");
   $st->execute();
-  return $email;
+  return "Email je sacuvan. Nazad na $_SERVER['HTTP_REFERER']";
 });
 
 $app->run();
