@@ -47,7 +47,10 @@ $app->get('/db/', function() use($app) {
 });
 
 $app->post('/prijava', function() use($app) {
-  return $_POST["email"];
+  $email = $_POST["email"];
+  $st = $app['pdo']->prepare("insert into korisnici (email) values ('$email');");
+  $st->execute();
+  return $email;
 });
 
 $app->run();
