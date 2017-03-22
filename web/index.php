@@ -51,7 +51,7 @@ $app->post('/prijava', function() use($app) {
   $referer = $_SERVER['HTTP_REFERER'];
   $st = $app['pdo']->prepare("insert into korisnici (email) values ('$email');");
   $st->execute();
-  return "Email je sacuvan. Nazad na $referer";
+  return "Email je sacuvan. Nazad na <a href='$referer'>$referer</a>";
 });
 
 $app->run();
