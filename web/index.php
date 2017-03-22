@@ -47,7 +47,7 @@ $app->get('/db/', function() use($app) {
 });
 
 $app->get('/prijava', function() use($app) {
-  return 'Zdravo';
+  return $_GET["email"];
 });
 
 $app->run();
