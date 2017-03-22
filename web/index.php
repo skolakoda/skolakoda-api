@@ -46,7 +46,7 @@ $app->get('/db/', function() use($app) {
   ));
 });
 
-$app->get('/prijava', function() use($app) {
+$app->post('/prijava', function() use($app) {
   return $_POST["email"];
 });
 
