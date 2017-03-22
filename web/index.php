@@ -40,14 +40,14 @@ $app->get('/db/', function() use($app) {
   $st = $app['pdo']->prepare('SELECT email FROM korisnici');
   $st->execute();
 
-  $names = array();
+  $korisnici = array();
   while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
     $app['monolog']->addDebug('Row ' . $row['email']);
-    $names[] = $row;
+    $korisnici[] = $row;
   }
 
   return $app['twig']->render('database.twig', array(
-    'names' => $names
+    'korisnici' => $korisnici
   ));
 });
 
