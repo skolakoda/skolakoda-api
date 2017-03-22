@@ -1,14 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<p>Got these rows from the database:</p>
 
-<ul>
-{% for k in korisnici %}
-  <li> {{ k.email }} </li>
-{% else %}
-  <li>Nameless!</li>
-{% endfor %}
-</ul>
+<div class="container">
+  <p>Got these rows from the database:</p>
+
+  <ul>
+  {% for k in korisnici %}
+    <li> {{ k.email }} </li>
+  {% else %}
+    <li>Nameless!</li>
+  {% endfor %}
+  </ul>
+</div>
 
 {% endblock %}
