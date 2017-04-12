@@ -1,0 +1,4 @@
+kurs: uvod u svet programiranja
+ime: Darko Kovacevic
+email: kovacevic.darko19@gmail.com
+cena: 2000
