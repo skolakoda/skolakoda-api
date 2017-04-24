@@ -1,4 +1,12 @@
 kurs: uvod u svet programiranja
 ime: Darko Kovacevic
 email: kovacevic.darko19@gmail.com
-cena: 2000
+
+kurs
+Uvod u programiranje kroz Javaskript
+ime
+Ivana Stojanović
+telefon
+0654321243
+email
+ivaeka@yahoo.co.uk
