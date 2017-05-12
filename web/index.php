@@ -51,7 +51,7 @@ $app->get('/kursevi', function() use($app) {
 
 /* POST */
 
-$app->post('/prijava', function() use($app) {
+$app->post('/bilten', function() use($app) {
   $email = $_POST["email"];
   $referer = $_SERVER['HTTP_REFERER'];
   $upit = $app['pdo']->prepare("insert into korisnici (email) values ('$email');");

@@ -18,3 +18,8 @@ heroku pg:psql
 ```
 
 Za SQL komande mora `;` na kraju.
+
+## TODO
+
+* dodati korisnike koji su se prijavili
+* dodati prijavu
