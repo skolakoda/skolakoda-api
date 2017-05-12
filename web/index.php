@@ -22,7 +22,7 @@ $app->register(
 /* GET */
 
 $app->get('/', function() use($app) {
-  return str_repeat('Hello ', getenv('TIMES'));
+  return 'Zdravo';
 });
 
 $app->get('/korisnici', function() use($app) {
