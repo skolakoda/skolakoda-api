@@ -71,14 +71,21 @@ $app->post('/prijava', function() use($app) {
     "SELECT 1 FROM korisnici WHERE email='$email' LIMIT 1;"
   );
   $provera_korisnika->execute();
-  $row = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
+  $rezultat = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
+  $info = "ne znam";
+
+  if ($rezultat) {
+       $info = "ima korisnika";
+  } else {
+       $info = "nema korisnika";
+  }
 
   $dodaje_korisnika = $app['pdo']->prepare(
     "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email');"
   );
 
   $referer = $_SERVER['HTTP_REFERER'];
-  return $row;
+  return $info;
 });
 
 /* START */
