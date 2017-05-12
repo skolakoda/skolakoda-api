@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+  <p>Kursevi:</p>
+
+  <ul>
+  {% for k in kursevi %}
+    <li> {{ k.naziv }} </li>
+  {% else %}
+    <li>Nema kurseva!</li>
+  {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

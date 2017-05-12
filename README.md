@@ -14,3 +14,7 @@ Ulazi u bazu na serveru:
 ```
 heroku pg:psql
 ```
+
+## TODO
+
+- pokusati write file
