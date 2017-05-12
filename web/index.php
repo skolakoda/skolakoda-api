@@ -78,7 +78,7 @@ $app->post('/prijava', function() use($app) {
   );
 
   $referer = $_SERVER['HTTP_REFERER'];
-  return var_dump($row);
+  return $row;
 });
 
 /* START */
