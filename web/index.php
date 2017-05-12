@@ -39,7 +39,7 @@ $app->get('/korisnici', function() use($app) {
 });
 
 $app->get('/kursevi', function() use($app) {
-  $st = $app['pdo']->prepare('SELECT naziv FROM kursevi');
+  $st = $app['pdo']->prepare('SELECT * FROM kursevi');
   $st->execute();
   $kursevi = array();
   while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
