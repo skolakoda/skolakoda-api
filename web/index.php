@@ -5,12 +5,6 @@ require('../vendor/autoload.php');
 $app = new Silex\Application();
 $app['debug'] = true;
 
-// Register the monolog logging service
-$app->register(new Silex\Provider\MonologServiceProvider(), array(
-  'monolog.logfile' => 'php://stderr',
-));
-
-// Register view rendering
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/views',
 ));
@@ -37,7 +31,6 @@ $app->get('/korisnici', function() use($app) {
   $st->execute();
   $korisnici = array();
   while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-    $app['monolog']->addDebug('Row ' . $row['email']);
     $korisnici[] = $row;
   }
   return $app['twig']->render('korisnici.twig', array(
@@ -50,7 +43,6 @@ $app->get('/kursevi', function() use($app) {
   $st->execute();
   $kursevi = array();
   while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-    // $app['monolog']->addDebug('Row ' . $row['naziv']);
     $kursevi[] = $row;
   }
   return $app['twig']->render('kursevi.twig', array(
