@@ -10,11 +10,11 @@ Instalira zavisnosti na lokalu:
 composer install
 ```
 
+## Baza
+
 Ulazi u bazu na serveru:
 ```
 heroku pg:psql
 ```
 
-## TODO
-
-- pokusati write file
+Za SQL komande mora `;` na kraju.

@@ -50,7 +50,7 @@ $app->get('/kursevi', function() use($app) {
   $st->execute();
   $kursevi = array();
   while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-    $app['monolog']->addDebug('Row ' . $row['naziv']);
+    // $app['monolog']->addDebug('Row ' . $row['naziv']);
     $kursevi[] = $row;
   }
   return $app['twig']->render('kursevi.twig', array(
