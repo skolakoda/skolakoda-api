@@ -59,4 +59,8 @@ $app->post('/bilten', function() use($app) {
   return "Email je sacuvan. Nazad na <a href='$referer'>$referer</a>";
 });
 
+$app->post('/prijava', function() use($app) {
+  return 'Zdravo prijava';
+});
+
 $app->run();
