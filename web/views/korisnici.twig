@@ -6,8 +6,8 @@
   <p>Korisnici:</p>
 
   <ul>
-  {% for k in korisnici %}
-    <li> {{ k.email }} </li>
+  {% for korisnik in korisnici %}
+    <li> {{korisnik.id}}: {{korisnik.email}} </li>
   {% else %}
     <li>Nema nikoga!</li>
   {% endfor %}

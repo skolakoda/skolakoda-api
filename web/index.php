@@ -22,15 +22,14 @@ $app->register(
 /* GET */
 
 $app->get('/', function() use($app) {
-  $app['monolog']->addDebug('logging output.');
   return str_repeat('Hello ', getenv('TIMES'));
 });
 
 $app->get('/korisnici', function() use($app) {
-  $st = $app['pdo']->prepare('SELECT email FROM korisnici');
-  $st->execute();
+  $upit = $app['pdo']->prepare('SELECT * FROM korisnici');
+  $upit->execute();
   $korisnici = array();
-  while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
+  while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
     $korisnici[] = $row;
   }
   return $app['twig']->render('korisnici.twig', array(
@@ -39,10 +38,10 @@ $app->get('/korisnici', function() use($app) {
 });
 
 $app->get('/kursevi', function() use($app) {
-  $st = $app['pdo']->prepare('SELECT * FROM kursevi');
-  $st->execute();
+  $upit = $app['pdo']->prepare('SELECT * FROM kursevi');
+  $upit->execute();
   $kursevi = array();
-  while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
+  while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
     $kursevi[] = $row;
   }
   return $app['twig']->render('kursevi.twig', array(
@@ -55,8 +54,8 @@ $app->get('/kursevi', function() use($app) {
 $app->post('/prijava', function() use($app) {
   $email = $_POST["email"];
   $referer = $_SERVER['HTTP_REFERER'];
-  $st = $app['pdo']->prepare("insert into korisnici (email) values ('$email');");
-  $st->execute();
+  $upit = $app['pdo']->prepare("insert into korisnici (email) values ('$email');");
+  $upit->execute();
   return "Email je sacuvan. Nazad na <a href='$referer'>$referer</a>";
 });
 
