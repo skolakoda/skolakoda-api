@@ -68,15 +68,17 @@ $app->post('/prijava', function() use($app) {
   // ako mejl postoji azurirati korisnika, inace dodati
   // prijavu u prijave, datum upusuje default
   $provera_korisnika = $app['pdo']->prepare(
-    "SELECT exists(SELECT 1 from korisnici where email='$email');"
+    "SELECT 1 FROM korisnici WHERE email='$email' LIMIT 1;"
   );
+  $provera_korisnika->execute();
+  $row = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
 
   $dodaje_korisnika = $app['pdo']->prepare(
     "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email');"
   );
 
   $referer = $_SERVER['HTTP_REFERER'];
-  return $provera_korisnika->execute();
+  return var_dump($row);
 });
 
 /* START */
