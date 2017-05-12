@@ -54,13 +54,31 @@ $app->get('/kursevi', function() use($app) {
 $app->post('/bilten', function() use($app) {
   $email = $_POST["email"];
   $referer = $_SERVER['HTTP_REFERER'];
-  $upit = $app['pdo']->prepare("insert into korisnici (email) values ('$email');");
+  $upit = $app['pdo']->prepare("INSERT INTO korisnici (email) values ('$email');");
   $upit->execute();
   return "Email je sacuvan. Nazad na <a href='$referer'>$referer</a>";
 });
 
 $app->post('/prijava', function() use($app) {
-  return 'Zdravo prijava';
+  $ime = $_POST["ime"];
+  $telefon = $_POST["telefon"];
+  $email = $_POST["email"];
+  $kurs = $_POST["kurs"];
+
+  // ako mejl postoji azurirati korisnika, inace dodati
+  // prijavu u prijave, datum upusuje default
+  $provera_korisnika = $app['pdo']->prepare(
+    "SELECT exists(SELECT 1 from korisnici where email='$email');"
+  );
+
+  $dodaje_korisnika = $app['pdo']->prepare(
+    "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email');"
+  );
+
+  $referer = $_SERVER['HTTP_REFERER'];
+  return $provera_korisnika->execute();
 });
+
+/* START */
 
 $app->run();
