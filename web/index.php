@@ -76,17 +76,13 @@ $app->post('/prijava', function() use($app) {
   } else {
     $upit_za_korisnika = "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email') RETURNING id;";
   }
-  // $pripremljeni_upit = $app['pdo']->prepare($upit_za_korisnika);
-  // $pripremljeni_upit->execute();
-
-  $query = pg_query($upit_za_korisnika);
-  $row = pg_fetch_row($query);
-  $new_id = $row['0'];
+  $pripremljeni_upit = $app['pdo']->prepare($upit_za_korisnika);
+  $pripremljeni_upit->execute();
 
   // dobaviti id korisnika
   // ako prijave nama, dodati prijavu, datum upusuje default
   // uspesno ste prijavljeni, vrati na home
-  return 'Zdravo' . $new_id;
+  return 'Zdravo';
 });
 
 /* START */
