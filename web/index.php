@@ -95,11 +95,9 @@ $app->post('/prijava', function() use($app) {
   $korisnik_id = $korisnik['id'];
 
   if ($korisnik) {
-    $upit = $app['pdo']->prepare($azurira_korisnika);
-    $upit->execute();
+    $app['pdo']->prepare($azurira_korisnika)->execute();
   } else {
-    $upit = $app['pdo']->prepare($unosi_korisnika);
-    $upit->execute();
+    $app['pdo']->prepare($unosi_korisnika)->execute();
     $korisnik_id = $app['pdo']->lastInsertId();
   }
 
