@@ -65,11 +65,11 @@ $app->post('/prijava', function() use($app) {
   $email = $_POST["email"];
   $kurs = $_POST["kurs"];
 
-  $provera_korisnika = $app['pdo']->prepare(
+  $pripremljeni_upit = $app['pdo']->prepare(
     "SELECT * FROM korisnici WHERE email='$email' LIMIT 1;"
   );
-  $provera_korisnika->execute();
-  $korisnik = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
+  $pripremljeni_upit->execute();
+  $korisnik = $pripremljeni_upit->fetch(PDO::FETCH_ASSOC);
 
   if ($korisnik) {
     $upit_za_korisnika = "UPDATE korisnici SET (ime, telefon) = ('$ime','$telefon') WHERE email = '$email' RETURNING id";
@@ -82,7 +82,7 @@ $app->post('/prijava', function() use($app) {
   // dobaviti id korisnika
   // ako prijave nama, dodati prijavu, datum upusuje default
   // uspesno ste prijavljeni, vrati na home
-  return 'Zdravo' . $korisnik[0];
+  return 'Zdravo' . $korisnik;
 });
 
 /* START */
