@@ -97,8 +97,7 @@ $app->post('/prijava', function() use($app) {
   // TODO: proveriti jel vec postoji prijava
   $prijava->execute();
 
-  // return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
-  return $korisnik_id;
+  return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
 });
 
 /* START */
