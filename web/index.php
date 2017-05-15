@@ -21,10 +21,6 @@ $app->register(
 
 /* GET */
 
-$app->get('/', function() use($app) {
-  return 'Zdravo';
-});
-
 $app->get('/korisnici', function() use($app) {
   $upit = $app['pdo']->prepare('SELECT * FROM korisnici');
   $upit->execute();
@@ -101,7 +97,7 @@ $app->post('/prijava', function() use($app) {
   // TODO: proveriti jel vec postoji prijava
   $prijava->execute();
 
-  return "Hvala na prijavi! Nazad na <a href='http://skolakoda.org/'>Naslovnu</a>";
+  return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
 });
 
 /* START */
