@@ -65,24 +65,31 @@ $app->post('/prijava', function() use($app) {
   $email = $_POST["email"];
   $kurs = $_POST["kurs"];
 
-  $pripremljeni_upit = $app['pdo']->prepare(
+  $provera_upit = $app['pdo']->prepare(
     "SELECT * FROM korisnici WHERE email='$email' LIMIT 1;"
   );
-  $pripremljeni_upit->execute();
-  $korisnik = $pripremljeni_upit->fetch(PDO::FETCH_ASSOC);
+  $provera_upit->execute();
+  $korisnik = $provera_upit->fetch(PDO::FETCH_ASSOC);
 
   if ($korisnik) {
-    $upit_za_korisnika = "UPDATE korisnici SET (ime, telefon) = ('$ime','$telefon') WHERE email = '$email' RETURNING id";
+    $upit_za_korisnika = "UPDATE korisnici SET (ime, telefon) = ('$ime','$telefon') WHERE email = '$email'";
   } else {
-    $upit_za_korisnika = "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email') RETURNING id;";
+    $upit_za_korisnika = "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email');";
+    $provera_upit->execute();
+    $korisnik = $provera_upit->fetch(PDO::FETCH_ASSOC);
   }
-  $pripremljeni_upit = $app['pdo']->prepare($upit_za_korisnika);
-  $pripremljeni_upit->execute();
 
-  // dobaviti id korisnika
-  // ako prijave nama, dodati prijavu, datum upusuje default
-  // uspesno ste prijavljeni, vrati na home
-  return 'Zdravo' . $korisnik['id'];
+  $dodaja = $app['pdo']->prepare($upit_za_korisnika);
+  $dodaja->execute();
+
+  $korisnik_id = $korisnik['id'];
+  $prijava = $app['pdo']->prepare(
+    "INSERT INTO prijave (korisnik_id, kurs_id) values ('$korisnik_id', '$kurs');"
+  );
+  // TODO: proveriti jel vec postoji prijava
+  $prijava->execute();
+
+  return "Hvala na prijavi! Nazad na <a href='http://skolakoda.org/'>Naslovnu</a>";
 });
 
 /* START */
