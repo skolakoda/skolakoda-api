@@ -10,6 +10,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 $dbopts = parse_url(getenv('DATABASE_URL'));
+
 $app->register(
   new Herrera\Pdo\PdoServiceProvider(),
    array(
@@ -98,8 +99,9 @@ $app->post('/prijava', function() use($app) {
     $upit->execute();
   } else {
     $upit = $app['pdo']->prepare($unosi_korisnika);
-    $novi_id = $upit->execute();
+    $upit->execute();
     // izvuci novokreirani $korisnik_id
+    $novi_id = $app['pdo']->lastInsertId();
   }
 
   $prijava = $app['pdo']->prepare(
