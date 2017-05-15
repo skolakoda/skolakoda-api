@@ -61,9 +61,10 @@ $app->get('/prijave', function() use($app) {
 
 $app->post('/bilten', function() use($app) {
   $email = $_POST["email"];
-  $referer = $_SERVER['HTTP_REFERER'];
   $upit = $app['pdo']->prepare("INSERT INTO korisnici (email) values ('$email');");
   $upit->execute();
+
+  $referer = $_SERVER['HTTP_REFERER'];
   return "Email je sacuvan. Nazad na <a href='$referer'>$referer</a>";
 });
 
@@ -73,6 +74,11 @@ $app->post('/prijava', function() use($app) {
   $email = $_POST["email"];
   $kurs = $_POST["kurs"];
 
+  $azurira_korisnika = "UPDATE korisnici SET (ime, telefon) = ('$ime','$telefon') WHERE email = '$email'";
+  $unosi_korisnika = "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email');";
+
+  /* INIT */
+
   $provera_upit = $app['pdo']->prepare(
     "SELECT * FROM korisnici WHERE email='$email' LIMIT 1;"
   );
@@ -80,15 +86,16 @@ $app->post('/prijava', function() use($app) {
   $korisnik = $provera_upit->fetch(PDO::FETCH_ASSOC);
 
   if ($korisnik) {
-    $upit_za_korisnika = "UPDATE korisnici SET (ime, telefon) = ('$ime','$telefon') WHERE email = '$email'";
+    $upit = $app['pdo']->prepare($azurira_korisnika);
   } else {
-    $upit_za_korisnika = "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email');";
+    $upit = $app['pdo']->prepare($unosi_korisnika);
+    $provera_upit = $app['pdo']->prepare(
+      "SELECT * FROM korisnici WHERE email='$email' LIMIT 1;"
+    );
     $provera_upit->execute();
     $korisnik = $provera_upit->fetch(PDO::FETCH_ASSOC);
   }
-
-  $dodaja = $app['pdo']->prepare($upit_za_korisnika);
-  $dodaja->execute();
+  $upit->execute();
 
   $korisnik_id = $korisnik['id'];
   $prijava = $app['pdo']->prepare(
@@ -97,6 +104,7 @@ $app->post('/prijava', function() use($app) {
   // TODO: proveriti jel vec postoji prijava
   $prijava->execute();
 
+  $referer = $_SERVER['HTTP_REFERER'];
   return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
 });
 

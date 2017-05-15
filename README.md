@@ -26,8 +26,7 @@ Opisuje tabelu:
 Napomena: za `SQL` komande mora `;` na kraju.
 
 ## TODO
-* izvuci JSON iz svih baza
-* manipulisati svim podacima u JS-u
-
+* bug - ako nema korisnika samo ga napravi, ne prijavi kurs, tek iz druge?
+* dodati bul polje za prijavljene korisnike
 * srediti prikazivanje prijava
 * dodati korisnike koji su se prijavili

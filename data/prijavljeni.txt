@@ -10,33 +10,21 @@ kurs: uvod u svet programiranja
 ime: Darko Kovacevic
 email: kovacevic.darko19@gmail.com
 
-kurs
-Uvod u programiranje kroz Javaskript
-ime
-Ivana Stojanović
-telefon
-0654321243
-email
-ivaeka@yahoo.co.uk
+kurs: Uvod u programiranje kroz Javaskript
+ime: Ivana Stojanović
+telefon: 0654321243
+email: ivaeka@yahoo.co.uk
 
-kurs
-Napredni Javascript
-ime
-Miloš Ilić
-telefon
-0628524896
-email
-milos1802@gmail.com
+kurs: Napredni Javascript
+ime: Miloš Ilić
+telefon: 0628524896
+email: milos1802@gmail.com
 
 2 kursa
 HTML i CSS, Javaskript
-ime
-Jevtic Mandic Zoran
-telefon
-064/04-78-404
-email
-zokijm88@gmail.com
-
+ime: Jevtic Mandic Zoran
+telefon: 064/04-78-404
+email: zokijm88@gmail.com
 
 kurs
 osnovni JS
