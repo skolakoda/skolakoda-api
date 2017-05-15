@@ -17,7 +17,13 @@ Ulazi u bazu na serveru:
 heroku pg:psql
 ```
 
-Za SQL komande mora `;` na kraju.
+Opisuje tabelu:
+
+```
+\d+ korisnici
+```
+
+Napomena: za `SQL` komande mora `;` na kraju.
 
 ## TODO
 

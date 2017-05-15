@@ -65,27 +65,27 @@ $app->post('/prijava', function() use($app) {
   $email = $_POST["email"];
   $kurs = $_POST["kurs"];
 
-  // ako mejl postoji azurirati korisnika, inace dodati
-  // prijavu u prijave, datum upusuje default
   $provera_korisnika = $app['pdo']->prepare(
     "SELECT 1 FROM korisnici WHERE email='$email' LIMIT 1;"
   );
   $provera_korisnika->execute();
-  $rezultat = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
-  $info = "ne znam";
+  $korisnik = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
 
-  if ($rezultat) {
-       $info = "ima korisnika";
+  if ($korisnik) {
+    $upit_za_korisnika = "UPDATE korisnici SET (ime, telefon) = ('$ime','$telefon') WHERE email = '$email' RETURNING id";
   } else {
-       $info = "nema korisnika";
+    $upit_za_korisnika = "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email') RETURNING id;";
   }
 
-  $dodaje_korisnika = $app['pdo']->prepare(
-    "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email');"
-  );
+  $pripremljeni_upit = $app['pdo']->prepare($upit_za_korisnika);
+  $id = $pripremljeni_upit->execute();
 
-  $referer = $_SERVER['HTTP_REFERER'];
-  return $info;
+  // dobaviti id korisnika
+
+  // ako prijave nama, dodati prijavu, datum upusuje default
+
+  // uspesno ste prijavljeni, vrati na home
+  return $id;
 });
 
 /* START */
