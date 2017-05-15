@@ -24,6 +24,5 @@ Opisuje tabelu:
 ```
 
 ## TODO
-* dodati binarno polje za polaznike
 * dodati korisnike koji su se prijavili sa mejla
 * srediti prikaz prijava
