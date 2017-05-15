@@ -49,6 +49,18 @@ $app->get('/kursevi', function() use($app) {
   ));
 });
 
+$app->get('/prijave', function() use($app) {
+  $upit = $app['pdo']->prepare('SELECT * FROM prijave');
+  $upit->execute();
+  $prijave = array();
+  while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
+    $prijave[] = $row;
+  }
+  return $app['twig']->render('prijave.twig', array(
+    'prijave' => $prijave
+  ));
+});
+
 /* POST */
 
 $app->post('/bilten', function() use($app) {

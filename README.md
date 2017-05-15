@@ -27,5 +27,5 @@ Napomena: za `SQL` komande mora `;` na kraju.
 
 ## TODO
 
+* izlistati prijave
 * dodati korisnike koji su se prijavili
-* dodati prijavu
