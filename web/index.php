@@ -79,14 +79,14 @@ $app->post('/prijava', function() use($app) {
   $pripremljeni_upit = $app['pdo']->prepare($upit_za_korisnika);
   $pripremljeni_upit->execute();
 
-  $id = pg_query($upit_za_korisnika);
+  $query = pg_query($upit_za_korisnika);
+  $row = pg_fetch_row($query);
+  $new_id = $row['0'];
 
   // dobaviti id korisnika
-
   // ako prijave nama, dodati prijavu, datum upusuje default
-
   // uspesno ste prijavljeni, vrati na home
-  return pg_fetch_array($new_id);
+  return $new_id;
 });
 
 /* START */
