@@ -82,7 +82,7 @@ $app->post('/prijava', function() use($app) {
   // dobaviti id korisnika
   // ako prijave nama, dodati prijavu, datum upusuje default
   // uspesno ste prijavljeni, vrati na home
-  return 'Zdravo' . var_dump($korisnik);
+  return 'Zdravo' . $korisnik['id'];
 });
 
 /* START */
