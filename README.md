@@ -26,6 +26,8 @@ Opisuje tabelu:
 Napomena: za `SQL` komande mora `;` na kraju.
 
 ## TODO
+* izvuci JSON iz svih baza
+* manipulisati svim podacima u JS-u
 
-* izlistati prijave
+* srediti prikazivanje prijava
 * dodati korisnike koji su se prijavili
