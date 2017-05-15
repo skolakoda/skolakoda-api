@@ -32,7 +32,7 @@ $app->get('/korisnici', function() use($app) {
   while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
     $korisnici[] = $row;
   }
-  return print json_encode(korisnici);
+  return print json_encode($korisnici);
   // return $app['twig']->render('korisnici.twig', array(
   //   'korisnici' => $korisnici
   // ));
