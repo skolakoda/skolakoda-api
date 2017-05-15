@@ -74,38 +74,43 @@ $app->post('/prijava', function() use($app) {
   $email = $_POST["email"];
   $kurs = $_POST["kurs"];
 
-  $azurira_korisnika = "UPDATE korisnici SET (ime, telefon) = ('$ime','$telefon') WHERE email = '$email'";
-  $unosi_korisnika = "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email');";
+  $azurira_korisnika = "UPDATE korisnici
+    SET (ime, telefon) = ('$ime','$telefon')
+    WHERE email = '$email';
+  ";
+  $unosi_korisnika = "INSERT INTO korisnici
+    (ime, telefon, email)
+    values ('$ime', '$telefon', '$email')
+    RETURNING id;
+  ";
 
   /* INIT */
 
-  $provera_upit = $app['pdo']->prepare(
+  $provera_korisnika = $app['pdo']->prepare(
     "SELECT * FROM korisnici WHERE email='$email' LIMIT 1;"
   );
-  $provera_upit->execute();
-  $korisnik = $provera_upit->fetch(PDO::FETCH_ASSOC);
+  $provera_korisnika->execute();
+  $korisnik = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
+  $korisnik_id = $korisnik['id'];
 
   if ($korisnik) {
     $upit = $app['pdo']->prepare($azurira_korisnika);
+    $upit->execute();
   } else {
     $upit = $app['pdo']->prepare($unosi_korisnika);
-    $provera_upit = $app['pdo']->prepare(
-      "SELECT * FROM korisnici WHERE email='$email' LIMIT 1;"
-    );
-    $provera_upit->execute();
-    $korisnik = $provera_upit->fetch(PDO::FETCH_ASSOC);
+    $novi_id = $upit->execute();
+    // izvuci novokreirani $korisnik_id
   }
-  $upit->execute();
 
-  $korisnik_id = $korisnik['id'];
   $prijava = $app['pdo']->prepare(
     "INSERT INTO prijave (korisnik_id, kurs_id) values ('$korisnik_id', '$kurs');"
   );
   // TODO: proveriti jel vec postoji prijava
   $prijava->execute();
 
-  $referer = $_SERVER['HTTP_REFERER'];
-  return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
+  return $novi_id;
+  // $referer = $_SERVER['HTTP_REFERER'];
+  // return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
 });
 
 /* START */

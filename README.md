@@ -26,7 +26,7 @@ Opisuje tabelu:
 Napomena: za `SQL` komande mora `;` na kraju.
 
 ## TODO
-* bug - ako nema korisnika samo ga napravi, ne prijavi kurs, tek iz druge?
+* bug: ako nema korisnika samo ga napravi, prijavi kurs tek iz druge!
 * dodati bul polje za prijavljene korisnike
 * srediti prikazivanje prijava
 * dodati korisnike koji su se prijavili

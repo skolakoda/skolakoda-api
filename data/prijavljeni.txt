@@ -26,20 +26,12 @@ ime: Jevtic Mandic Zoran
 telefon: 064/04-78-404
 email: zokijm88@gmail.com
 
-kurs
-osnovni JS
-ime
-Mirjana Zajic
-telefon
-0643511005
-email
-mira.zayic@gmail.com
+kurs: osnovni JS
+ime: Mirjana Zajic
+telefon: 0643511005
+email: mira.zayic@gmail.com
 
-kurs
-Uvod u web dizajn
-ime
-Saša Mitrović
-telefon
-064/18-32-678
-email
-san-sale@hotmail.com
+kurs: Uvod u web dizajn
+ime: Saša Mitrović
+telefon: 064/18-32-678
+email: san-sale@hotmail.com
