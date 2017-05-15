@@ -72,6 +72,7 @@ $app->post('/prijava', function() use($app) {
   $korisnik = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
 
   if ($korisnik) {
+    $row = $upit->fetch(PDO::FETCH_ASSOC);
     $upit_za_korisnika = "UPDATE korisnici SET (ime, telefon) = ('$ime','$telefon') WHERE email = '$email' RETURNING id";
   } else {
     $upit_za_korisnika = "INSERT INTO korisnici (ime, telefon, email) values ('$ime', '$telefon', '$email') RETURNING id;";
@@ -82,7 +83,7 @@ $app->post('/prijava', function() use($app) {
   // dobaviti id korisnika
   // ako prijave nama, dodati prijavu, datum upusuje default
   // uspesno ste prijavljeni, vrati na home
-  return 'Zdravo';
+  return 'Zdravo' . $row['id'];
 });
 
 /* START */
