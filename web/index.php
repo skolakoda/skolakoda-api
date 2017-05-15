@@ -100,19 +100,17 @@ $app->post('/prijava', function() use($app) {
   } else {
     $upit = $app['pdo']->prepare($unosi_korisnika);
     $upit->execute();
-    // izvuci novokreirani $korisnik_id
-    $novi_id = $app['pdo']->lastInsertId();
+    $korisnik_id = $app['pdo']->lastInsertId();
   }
 
   $prijava = $app['pdo']->prepare(
     "INSERT INTO prijave (korisnik_id, kurs_id) values ('$korisnik_id', '$kurs');"
   );
-  // TODO: proveriti jel vec postoji prijava
+  // proveriti jel vec postoji prijava!
   $prijava->execute();
 
-  return $novi_id;
-  // $referer = $_SERVER['HTTP_REFERER'];
-  // return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
+  $referer = $_SERVER['HTTP_REFERER'];
+  return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
 });
 
 /* START */
