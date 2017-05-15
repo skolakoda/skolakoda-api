@@ -7,7 +7,7 @@
 
   <ul>
   {% for korisnik in korisnici %}
-    <li> {{korisnik.id}} | {{korisnik.email}} | {{korisnik.ime}} | {{korisnik.telefon}} </li>
+    <li> {{korisnik.id}} | {{korisnik.email}} | {{korisnik.prijavljen}} | {{korisnik.ime}} | {{korisnik.telefon}} </li>
   {% else %}
     <li>Nema nikoga!</li>
   {% endfor %}

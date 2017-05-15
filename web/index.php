@@ -76,16 +76,14 @@ $app->post('/prijava', function() use($app) {
   $kurs = $_POST["kurs"];
 
   $azurira_korisnika = "UPDATE korisnici
-    SET (ime, telefon) = ('$ime','$telefon')
+    SET (ime, telefon, prijavljen) = ('$ime','$telefon', TRUE)
     WHERE email = '$email';
   ";
   $unosi_korisnika = "INSERT INTO korisnici
-    (ime, telefon, email)
-    values ('$ime', '$telefon', '$email')
+    (ime, telefon, email, prijavljen)
+    values ('$ime', '$telefon', '$email', TRUE)
     RETURNING id;
   ";
-
-  /* INIT */
 
   $provera_korisnika = $app['pdo']->prepare(
     "SELECT * FROM korisnici WHERE email='$email' LIMIT 1;"

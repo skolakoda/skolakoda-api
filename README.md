@@ -11,6 +11,7 @@ composer install
 ```
 
 ## Baza
+(za `SQL` komande mora `;` na kraju)
 
 Ulazi u bazu na serveru:
 ```
@@ -18,14 +19,11 @@ heroku pg:psql
 ```
 
 Opisuje tabelu:
-
 ```
 \d+ korisnici
 ```
 
-Napomena: za `SQL` komande mora `;` na kraju.
-
 ## TODO
-* dodati bul polje za prijavljene korisnike
-* srediti prikazivanje prijava
-* dodati korisnike koji su se prijavili
+* dodati binarno polje za polaznike
+* dodati korisnike koji su se prijavili sa mejla
+* srediti prikaz prijava
