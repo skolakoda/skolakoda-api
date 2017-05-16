@@ -25,3 +25,4 @@ Opisuje tabelu:
 
 ## TODO
 * srediti prikaz prijava
+* poslati bilten
