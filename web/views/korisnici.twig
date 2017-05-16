@@ -5,20 +5,16 @@
   <p>Korisnici:</p>
 
   <table>
-  {% for row in korisnici|batch(5, 'No item') %}
+  {% for korisnik in korisnici %}
     <tr>
-      {% for korisnik in row %}
-        <td>{{ korisnik.ime }}</td>
-      {% endfor %}
+      <td>{{korisnik.id}}</td>
+      <td>{{korisnik.email}}</td>
+      <td>{{korisnik.prijavljen}}</td>
+      <td>{{korisnik.ime}}</td>
+      <td>{{korisnik.telefon}}</td>
     </tr>
   {% endfor %}
   </table>
-
-  <ul>
-  {% for korisnik in korisnici %}
-    <li> {{korisnik.id}} | {{korisnik.email}} | {{korisnik.prijavljen}} | {{korisnik.ime}} | {{korisnik.telefon}} </li>
-  {% endfor %}
-  </ul>
 
 </div>
 {% endblock %}
