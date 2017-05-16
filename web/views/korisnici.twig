@@ -4,9 +4,19 @@
 <div class="container">
   <p>Korisnici:</p>
 
+  <table>
+  {% for row in korisnici|batch(3, 'No item') %}
+    <tr>
+      {% for column in row %}
+        <td>{{ column }}</td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+
   <ul>
-  {% for svojstvo, korisnik in korisnici %}
-    <li> {{svojstvo}}: {{korisnik.id}} | {{korisnik.email}} | {{korisnik.prijavljen}} | {{korisnik.ime}} | {{korisnik.telefon}} </li>
+  {% for korisnik in korisnici %}
+    <li> {{korisnik.id}} | {{korisnik.email}} | {{korisnik.prijavljen}} | {{korisnik.ime}} | {{korisnik.telefon}} </li>
   {% endfor %}
   </ul>
 
