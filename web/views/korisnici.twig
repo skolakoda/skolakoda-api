@@ -8,7 +8,7 @@
   {% for row in korisnici|batch(3, 'No item') %}
     <tr>
       {% for column in row %}
-        <td>{{ column }}</td>
+        <td>{{ dump(column) }}</td>
       {% endfor %}
     </tr>
   {% endfor %}
