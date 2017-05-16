@@ -8,7 +8,7 @@
   {% for row in korisnici|batch(5, 'No item') %}
     <tr>
       {% for korisnik in row %}
-        <td>{{ korisnik }}</td>
+        <td>{{ korisnik.ime }}</td>
       {% endfor %}
     </tr>
   {% endfor %}
