@@ -5,15 +5,9 @@
 <div class="container">
   <p>Korisnici:</p>
 
-  <table>
-  {% for korisnik in korisnici|batch(2) %}
-    <tr>
-    {% for svojstvo in korisnik %}
-      <td>{{svojstvo}}</td>
-    {% endfor %}
-    </tr>
-  {% endfor %}
-  </table>
+  <pre>
+      {{ dump(user) }}
+  </pre>
 
   <ul>
   {% for korisnik in korisnici %}
