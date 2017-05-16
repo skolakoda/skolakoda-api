@@ -24,5 +24,4 @@ Opisuje tabelu:
 ```
 
 ## TODO
-* dodati korisnike koji su se prijavili sa mejla
 * srediti prikaz prijava

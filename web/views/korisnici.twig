@@ -5,6 +5,16 @@
 <div class="container">
   <p>Korisnici:</p>
 
+  <table>
+  {% for korisnik in korisnici|batch(2) %}
+    <tr>
+    {% for svojstvo in korisnik %}
+      <td>{{svojstvo}}</td>
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+
   <ul>
   {% for korisnik in korisnici %}
     <li> {{korisnik.id}} | {{korisnik.email}} | {{korisnik.prijavljen}} | {{korisnik.ime}} | {{korisnik.telefon}} </li>
