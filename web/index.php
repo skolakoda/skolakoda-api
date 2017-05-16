@@ -29,9 +29,10 @@ $app->get('/korisnici', function() use($app) {
   while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
     $korisnici[] = $row;
   }
-  return $app['twig']->render('korisnici.twig', array(
-    'korisnici' => $korisnici
-  ));
+  return json_encode($korisnici);
+  // return $app['twig']->render('korisnici.twig', array(
+  //   'korisnici' => $korisnici
+  // ));
 });
 
 $app->get('/kursevi', function() use($app) {
@@ -51,26 +52,10 @@ $app->get('/prijave', function() use($app) {
   $upit->execute();
   $prijave = array();
   while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
-    $row['kurs_naziv'] = $row['kurs_id'];
     $prijave[] = $row;
   }
-  $upit = $app['pdo']->prepare('SELECT * FROM korisnici');
-  $upit->execute();
-  $korisnici = array();
-  while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
-    $korisnici[] = $row;
-  }
-  $upit = $app['pdo']->prepare('SELECT * FROM kursevi');
-  $upit->execute();
-  $kursevi = array();
-  while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
-    $kursevi[] = $row;
-  }
-
   return $app['twig']->render('prijave.twig', array(
-    'prijave' => $prijave,
-    'korisnici' => $korisnici,
-    'kursevi' => $kursevi
+    'prijave' => $prijave
   ));
 });
 
