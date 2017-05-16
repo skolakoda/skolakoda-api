@@ -7,7 +7,6 @@
 
   <ul>
   {% for prijava in prijave %}
-    <li> {{dump(prijava)}} </li>
     <li> {{prijava.korisnik_id}}: {{prijava.kurs_id}} </li>
   {% endfor %}
   </ul>
