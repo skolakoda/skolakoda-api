@@ -5,10 +5,10 @@
   <p>Korisnici:</p>
 
   <table>
-  {% for row in korisnici|batch(3, 'No item') %}
+  {% for row in korisnici|batch(5, 'No item') %}
     <tr>
-      {% for column in row %}
-        <td>{{ dump(column) }}</td>
+      {% for korisnik in row %}
+        <td>{{ korisnik }}</td>
       {% endfor %}
     </tr>
   {% endfor %}
