@@ -1,20 +1,34 @@
 {% extends "layout.html" %}
 
+<style>
+  th {
+    font-weight: bold;
+  }
+</style>
+
 {% block content %}
-<div class="container">
-  <p>Korisnici:</p>
+  <div class="container">
+    <p>Korisnici:</p>
 
-  <table>
-  {% for korisnik in korisnici %}
-    <tr>
-      <td>{{korisnik.id}}</td>
-      <td>{{korisnik.email}}</td>
-      <td>{{korisnik.prijavljen}}</td>
-      <td>{{korisnik.ime}}</td>
-      <td>{{korisnik.telefon}}</td>
-    </tr>
-  {% endfor %}
-  </table>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Prijavljen</th>
+        <th>Ime</th>
+        <th>Telefon</th>
+      </tr>
+      <tr>
+        {% for korisnik in korisnici %}
+          <tr>
+            <td>{{korisnik.id}}</td>
+            <td>{{korisnik.email}}</td>
+            <td>{{korisnik.prijavljen}}</td>
+            <td>{{korisnik.ime}}</td>
+            <td>{{korisnik.telefon}}</td>
+          </tr>
+        {% endfor %}
+      </table>
 
-</div>
-{% endblock %}
+    </div>
+  {% endblock %}
