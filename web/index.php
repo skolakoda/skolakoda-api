@@ -51,6 +51,7 @@ $app->get('/prijave', function() use($app) {
   $upit->execute();
   $prijave = array();
   while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
+    $row['kurs_naziv'] = $row['kurs_id'];
     $prijave[] = $row;
   }
   $upit = $app['pdo']->prepare('SELECT * FROM korisnici');
@@ -64,10 +65,6 @@ $app->get('/prijave', function() use($app) {
   $kursevi = array();
   while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
     $kursevi[] = $row;
-  }
-
-  foreach($prijave as $prijava) {
-    $prijava['kurs_naziv'] = $prijava['kurs_id'];
   }
 
   return $app['twig']->render('prijave.twig', array(
