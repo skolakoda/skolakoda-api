@@ -20,15 +20,22 @@ $app->register(
    )
 );
 
-/* GET */
+/* FUNCTIONS */
 
-$app->get('/korisnici', function() use($app) {
+function dajKorisnike() {
   $upit = $app['pdo']->prepare('SELECT * FROM korisnici');
   $upit->execute();
   $korisnici = array();
   while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
     $korisnici[] = $row;
   }
+  return $korisnici;
+}
+
+/* GET */
+
+$app->get('/korisnici', function() use($app) {
+  $korisnici = dajKorisnike();
   return $app['twig']->render('korisnici.twig', array(
     'korisnici' => $korisnici
   ));
