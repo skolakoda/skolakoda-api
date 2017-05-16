@@ -13,7 +13,7 @@
         <th>Telefon</th>
       </tr>
       <tr>
-        {% for korisnik in korisnici %}
+        {% for korisnik in korisnici|sort %}
           <tr>
             <td>{{korisnik.id}}</td>
             <td>{{korisnik.email}}</td>
