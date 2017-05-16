@@ -4,12 +4,15 @@ require('../vendor/autoload.php');
 
 $app = new Silex\Application();
 $app['debug'] = true;
+$dbopts = parse_url(getenv('DATABASE_URL'));
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/views',
 ));
 
-$dbopts = parse_url(getenv('DATABASE_URL'));
+$app->after(function (Request $request, Response $response) {
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+});
 
 $app->register(
   new Herrera\Pdo\PdoServiceProvider(),
