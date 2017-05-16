@@ -1,21 +1,14 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
 <div class="container">
   <p>Korisnici:</p>
 
-  <pre>
-      {{ dump(korisnici) }}
-  </pre>
-
   <ul>
-  {% for korisnik in korisnici %}
-    <li> {{korisnik.id}} | {{korisnik.email}} | {{korisnik.prijavljen}} | {{korisnik.ime}} | {{korisnik.telefon}} </li>
-  {% else %}
-    <li>Nema nikoga!</li>
+  {% for svojstvo, korisnik in korisnici %}
+    <li> {{svojstvo}}: {{korisnik.id}} | {{korisnik.email}} | {{korisnik.prijavljen}} | {{korisnik.ime}} | {{korisnik.telefon}} </li>
   {% endfor %}
   </ul>
-</div>
 
+</div>
 {% endblock %}
