@@ -1,24 +1,38 @@
 <!doctype html>
-
-<html ng-app="todoApp">
+<html ng-app="adminApp">
 
 <head>
+  <title>Skolakoda Admin</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script src="todo.js"></script>
-  <link rel="stylesheet" href="todo.css">
+  <script src="app.js"></script>
 </head>
 
 <body>
-  <h2>Todo</h2>
-  <div ng-controller="TodoListController as todoList">
 
-    <ul>
-      <li ng-repeat="todo in todoList.todos">
-        <span class="done-{{todo.done}}">{{todo.text}}</span>
-      </li>
-    </ul>
-
+  <div ng-controller="Korisnici as ctrl">
+    <h2>Korisnici</h2>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Prijavljen</th>
+        <th>Ime</th>
+        <th>Telefon</th>
+      </tr>
+      <tr>
+        <tr ng-repeat="korisnik in ctrl.korisnici">
+          <td>{{korisnik.id}}</td>
+          <td>{{korisnik.email}}</td>
+          <td>{{korisnik.prijavljen}}</td>
+          <td>{{korisnik.ime}}</td>
+          <td>{{korisnik.telefon}}</td>
+        </tr>
+    </table>
   </div>
+
 </body>
 
 </html>

@@ -29,9 +29,6 @@ $app->get('/korisnici', function() use($app) {
     $korisnici[] = $row;
   }
   return json_encode($korisnici);
-  // return $app['twig']->render('korisnici.twig', array(
-  //   'korisnici' => $korisnici
-  // ));
 });
 
 $app->get('/kursevi', function() use($app) {
@@ -41,9 +38,7 @@ $app->get('/kursevi', function() use($app) {
   while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
     $kursevi[] = $row;
   }
-  return $app['twig']->render('kursevi.twig', array(
-    'kursevi' => $kursevi
-  ));
+  return json_encode($kursevi);
 });
 
 $app->get('/prijave', function() use($app) {
@@ -53,9 +48,7 @@ $app->get('/prijave', function() use($app) {
   while ($row = $upit->fetch(PDO::FETCH_ASSOC)) {
     $prijave[] = $row;
   }
-  return $app['twig']->render('prijave.twig', array(
-    'prijave' => $prijave
-  ));
+  return json_encode($prijave);
 });
 
 /* POST */
