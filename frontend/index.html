@@ -11,8 +11,8 @@
 </head>
 
 <body>
+  <div ng-controller="Admin as ctrl">
 
-  <div ng-controller="Kursevi as ctrl">
     <h2>Kursevi</h2>
     <table>
       <tr>
@@ -21,9 +21,7 @@
           <td>{{kurs.naziv}}</td>
         </tr>
     </table>
-  </div>
 
-  <div ng-controller="Korisnici as ctrl">
     <h2>Korisnici</h2>
     <table>
       <tr>
@@ -42,9 +40,7 @@
           <td>{{korisnik.telefon}}</td>
         </tr>
     </table>
-  </div>
 
-  <div ng-controller="Prijave as ctrl">
     <h2>Prijave</h2>
     <table>
       <tr>
@@ -53,8 +49,8 @@
           <td>{{prijava.korisnik_id}}</td>
         </tr>
     </table>
-  </div>
 
+  </div>
 </body>
 
 </html>
