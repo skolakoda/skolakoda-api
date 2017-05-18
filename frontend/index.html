@@ -13,6 +13,15 @@
 <body>
   <div ng-controller="Admin as ctrl">
 
+    <h2>Prijave</h2>
+    <table>
+      <tr>
+        <tr ng-repeat="prijava in ctrl.prijave">
+          <td>{{prijava.kurs_naziv}}</td>
+          <td>{{prijava.korisnik_ime}}</td>
+        </tr>
+    </table>
+
     <h2>Kursevi</h2>
     <table>
       <tr>
@@ -38,15 +47,6 @@
           <td>{{korisnik.prijavljen}}</td>
           <td>{{korisnik.ime}}</td>
           <td>{{korisnik.telefon}}</td>
-        </tr>
-    </table>
-
-    <h2>Prijave</h2>
-    <table>
-      <tr>
-        <tr ng-repeat="prijava in ctrl.prijave">
-          <td>{{prijava.kurs_id}}</td>
-          <td>{{prijava.korisnik_id}}</td>
         </tr>
     </table>
 
