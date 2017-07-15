@@ -23,4 +23,9 @@ Opisuje tabelu:
 \d+ korisnici
 ```
 
-## TODO
+## Frontend
+
+```
+cd frontend
+live-server
+```
