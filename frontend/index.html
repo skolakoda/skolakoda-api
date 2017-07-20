@@ -13,23 +13,24 @@
 <body>
   <div ng-controller="Admin as ctrl">
 
+    <h2>Kursevi</h2>
+    <table>
+      <tr>
+        <tr ng-repeat="kurs in ctrl.kursevi | orderBy: 'id'">
+          <td>{{kurs.id}}</td>
+          <td>{{kurs.naziv}}</td>
+        </tr>
+    </table>
+
     <h2>Prijave</h2>
     <table>
       <tr>
         <tr ng-repeat="prijava in ctrl.prijave">
           <td>{{prijava.kurs_naziv}}</td>
           <td>{{prijava.korisnik_ime}}</td>
+          <td>{{prijava.datum.substring(0, 10)}}</td>
         </tr>
     </table>
-
-    <!-- <h2>Kursevi</h2>
-    <table>
-      <tr>
-        <tr ng-repeat="kurs in ctrl.kursevi">
-          <td>{{kurs.id}}</td>
-          <td>{{kurs.naziv}}</td>
-        </tr>
-    </table> -->
 
     <h2>Korisnici</h2>
     <table>

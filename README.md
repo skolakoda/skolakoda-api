@@ -11,7 +11,6 @@ composer install
 ```
 
 ## Baza
-(za `SQL` komande mora `;` na kraju)
 
 Ulazi u bazu na serveru:
 ```
@@ -22,6 +21,8 @@ Opisuje tabelu:
 ```
 \d+ korisnici
 ```
+
+Za `SQL` komande mora `;` na kraju!
 
 ## Frontend
 
