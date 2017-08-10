@@ -63,15 +63,15 @@ $app->post('/prijava', function() use($app) {
   $telefon = $_POST["telefon"];
   $email = $_POST["email"];
   $kurs = $_POST["kurs"];
-  $nacin = $_POST["nacin"];
+  $uzivo = $_POST["uzivo"];
 
   $azurira_korisnika = "UPDATE korisnici
-    SET (ime, telefon, prijavljen) = ('$ime','$telefon', '$nacin')
+    SET (ime, telefon, prijavljen) = ('$ime','$telefon', TRUE)
     WHERE email = '$email';
   ";
   $unosi_korisnika = "INSERT INTO korisnici
     (ime, telefon, email, prijavljen)
-    values ('$ime', '$telefon', '$email', '$nacin')
+    values ('$ime', '$telefon', '$email', TRUE)
     RETURNING id;
   ";
 
@@ -90,7 +90,7 @@ $app->post('/prijava', function() use($app) {
   }
 
   $prijava = $app['pdo']->prepare(
-    "INSERT INTO prijave (korisnik_id, kurs_id) values ('$korisnik_id', '$kurs');"
+    "INSERT INTO prijave (korisnik_id, kurs_id, uzivo) values ('$korisnik_id', '$kurs', '$uzivo');"
   );
   // proveriti jel vec postoji prijava!
   $prijava->execute();
