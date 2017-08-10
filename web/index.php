@@ -63,14 +63,15 @@ $app->post('/prijava', function() use($app) {
   $telefon = $_POST["telefon"];
   $email = $_POST["email"];
   $kurs = $_POST["kurs"];
+  $nacin = $_POST["nacin"];
 
   $azurira_korisnika = "UPDATE korisnici
-    SET (ime, telefon, prijavljen) = ('$ime','$telefon', TRUE)
+    SET (ime, telefon, prijavljen) = ('$ime','$telefon', '$nacin')
     WHERE email = '$email';
   ";
   $unosi_korisnika = "INSERT INTO korisnici
     (ime, telefon, email, prijavljen)
-    values ('$ime', '$telefon', '$email', TRUE)
+    values ('$ime', '$telefon', '$email', '$nacin')
     RETURNING id;
   ";
 

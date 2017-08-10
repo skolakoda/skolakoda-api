@@ -42,7 +42,7 @@
         <th>Telefon</th>
       </tr>
       <tr>
-        <tr ng-repeat="korisnik in ctrl.korisnici">
+        <tr ng-repeat="korisnik in ctrl.korisnici | orderBy:'id'">
           <td>{{korisnik.id}}</td>
           <td>{{korisnik.email}}</td>
           <td>{{korisnik.prijavljen}}</td>
