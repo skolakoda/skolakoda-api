@@ -28,7 +28,7 @@
         <tr ng-repeat="prijava in ctrl.prijave">
           <td>{{prijava.kurs_naziv}}</td>
           <td>{{prijava.korisnik_ime}}</td>
-          <td>{{prijava.uzivo}}</td>
+          <td>{{prijava.uzivo ? 'uzivo' : 'preko neta'}}</td>
           <td>{{prijava.datum.substring(0, 10)}}</td>
         </tr>
     </table>
@@ -46,7 +46,7 @@
         <tr ng-repeat="korisnik in ctrl.korisnici | orderBy:'id'">
           <td>{{korisnik.id}}</td>
           <td>{{korisnik.email}}</td>
-          <td>{{korisnik.prijavljen}}</td>
+          <td>{{korisnik.prijavljen ? 'da' : 'ne'}}</td>
           <td>{{korisnik.ime}}</td>
           <td>{{korisnik.telefon}}</td>
         </tr>
