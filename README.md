@@ -30,3 +30,9 @@ Za `SQL` komande mora `;` na kraju!
 cd frontend
 live-server
 ```
+
+## TODO
+
+- backup baze!
+- odvojiti biznis
+- napraviti login
