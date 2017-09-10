@@ -24,15 +24,9 @@ Opisuje tabelu:
 
 Za `SQL` komande mora `;` na kraju!
 
-## Frontend
-
-```
-cd frontend
-live-server
-```
-
 ## TODO
 
 - backup baze!
 - odvojiti biznis
 - napraviti login
+- probati simfoni
