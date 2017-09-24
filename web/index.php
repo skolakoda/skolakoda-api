@@ -111,11 +111,11 @@ $app->post('/prijava', function() use($app) {
 $app->post('/brisanje', function() use($app) {
   $lozinka = $_POST["lozinka"];
   if ($lozinka != 'engine-3D') return "Lozinka nije ispravna";
-  
+
   $prijava_id = $_POST["prijava_id"];
   $upit = $app['pdo']->prepare("DELETE FROM prijave WHERE id='$prijava_id';");
   $upit->execute();
-  return "Obrisana prijava broj " . $prijava_id;
+  return "Obrisano";
 });
 
 /* START */
