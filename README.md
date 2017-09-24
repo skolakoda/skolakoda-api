@@ -26,7 +26,5 @@ Za `SQL` komande mora `;` na kraju!
 
 ## TODO
 
-- backup baze!
 - odvojiti biznis
-- napraviti login
 - probati simfoni
