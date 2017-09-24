@@ -4,7 +4,6 @@ require('../vendor/autoload.php');
 
 $app = new Silex\Application();
 $app['debug'] = true;
-$referer = $_SERVER['HTTP_REFERER'];
 
 $dbopts = parse_url(getenv('DATABASE_URL'));
 $app->register(
@@ -60,6 +59,7 @@ $app->post('/bilten', function() use($app) {
 });
 
 $app->post('/prijava', function() use($app) {
+  $referer = $_SERVER['HTTP_REFERER'];
   $ime = $_POST["ime"];
   $telefon = $_POST["telefon"];
   $email = $_POST["email"];
@@ -91,10 +91,10 @@ $app->post('/prijava', function() use($app) {
   }
 
   $provera_prijave = $app['pdo']->prepare(
-    "SELECT * FROM prijave WHERE korisnik_id='$korisnik_id' AND kurs_id='$kurs' LIMIT 1;"
+    "SELECT * FROM prijave WHERE korisnik_id='$korisnik_id' AND kurs_id='$kurs' AND uzivo='$uzivo' LIMIT 1;"
   );
   $provera_prijave->execute();
-  $ranija_prijava = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
+  $ranija_prijava = $provera_prijave->fetch(PDO::FETCH_ASSOC);
   $prijava_id = $ranija_prijava['id'];
 
   if ($ranija_prijava) {
