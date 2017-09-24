@@ -4,6 +4,7 @@ require('../vendor/autoload.php');
 
 $app = new Silex\Application();
 $app['debug'] = true;
+$referer = $_SERVER['HTTP_REFERER'];
 
 $dbopts = parse_url(getenv('DATABASE_URL'));
 $app->register(
@@ -89,14 +90,23 @@ $app->post('/prijava', function() use($app) {
     $korisnik_id = $app['pdo']->lastInsertId();
   }
 
-  $prijava = $app['pdo']->prepare(
-    "INSERT INTO prijave (korisnik_id, kurs_id, uzivo) values ('$korisnik_id', '$kurs', '$uzivo');"
+  $provera_prijave = $app['pdo']->prepare(
+    "SELECT * FROM prijave WHERE korisnik_id='$korisnik_id' AND kurs_id='$kurs' LIMIT 1;"
   );
-  // proveriti jel vec postoji prijava!
-  $prijava->execute();
+  $provera_prijave->execute();
+  $ranija_prijava = $provera_korisnika->fetch(PDO::FETCH_ASSOC);
+  $prijava_id = $ranija_prijava['id'];
 
-  $referer = $_SERVER['HTTP_REFERER'];
-  return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
+  if ($ranija_prijava) {
+    return "Vec ste prijavljeni na ovaj kurs! Nazad na <a href='$referer'>$referer</a>";
+  } else {
+    $prijava = $app['pdo']->prepare(
+      "INSERT INTO prijave (korisnik_id, kurs_id, uzivo) values ('$korisnik_id', '$kurs', '$uzivo');"
+    );
+    $prijava->execute();
+    return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
+  }
+
 });
 
 /* START */
