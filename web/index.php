@@ -109,7 +109,7 @@ $app->post('/prijava', function() use($app) {
 });
 
 $app->post('/brisanje', function() use($app) {
-  $prijava_id = $_POST["$prijava_id"];
+  $prijava_id = $_POST["prijava_id"];
   return "Obrisano" . $prijava_id;
   // $upit = $app['pdo']->prepare("INSERT INTO korisnici (email) values ('$email');");
   // $upit->execute();
