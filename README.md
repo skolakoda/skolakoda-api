@@ -12,7 +12,14 @@ composer install
 
 ## Baza
 
-Ulazi u bazu na serveru:
+Ulazi u remote bazu:
+
+```
+heroku pg:psql postgresql-deep-31707 --app skolakoda-api
+```
+
+Ulazi u bazu na lokalu:
+
 ```
 heroku pg:psql
 ```
@@ -26,5 +33,9 @@ Za `SQL` komande mora `;` na kraju!
 
 ## TODO
 
-- odvojiti biznis
-- probati simfoni
+- ukinuti sve biblioteke
+  - https://medium.com/@stevesohcot/converting-a-php-web-application-to-heroku-from-a-shard-host-ex-host-gator-7cb64e1ccd91
+  - https://devcenter.heroku.com/articles/php-support
+- dodati mysql
+  - https://scotch.io/@phalconVee/deploying-a-php-and-mysql-web-app-with-heroku
+

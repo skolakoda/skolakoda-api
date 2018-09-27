@@ -118,6 +118,17 @@ $app->post('/brisanje', function() use($app) {
   return "Obrisano";
 });
 
+$app->post('/azurira-javljeno', function() use($app) {
+  $lozinka = $_POST["lozinka"];
+  if ($lozinka != 'engine-3D') return "Lozinka nije ispravna";
+
+  $prijava_id = $_POST["prijava_id"];
+  $javljeno = $_POST["javljeno"];
+  $upit = $app['pdo']->prepare("UPDATE prijave SET javljeno=$javljeno WHERE id='$prijava_id';");
+  $upit->execute();
+  return "Azurirano";
+});
+
 /* START */
 
 $app->run();
