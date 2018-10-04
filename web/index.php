@@ -18,7 +18,7 @@ $app->register(
 /* GET */
 
 $app->get('/korisnici', function() use($app) {
-  if ($_GET["lozinka"] != getenv('LOZINKA')) return "Lozinka nije ispravna";
+  if ($_GET["lozinka"] != getenv('LOZINKA')) return;
   $upit = $app['pdo']->prepare('SELECT * FROM korisnici');
   $upit->execute();
   $korisnici = array();
@@ -29,7 +29,7 @@ $app->get('/korisnici', function() use($app) {
 });
 
 $app->get('/kursevi', function() use($app) {
-  if ($_GET["lozinka"] != getenv('LOZINKA')) return "Lozinka nije ispravna";
+  if ($_GET["lozinka"] != getenv('LOZINKA')) return "";
   $upit = $app['pdo']->prepare('SELECT * FROM kursevi');
   $upit->execute();
   $kursevi = array();
@@ -40,7 +40,7 @@ $app->get('/kursevi', function() use($app) {
 });
 
 $app->get('/prijave', function() use($app) {
-  if ($_GET["lozinka"] != getenv('LOZINKA')) return "Lozinka nije ispravna";
+  if ($_GET["lozinka"] != getenv('LOZINKA')) return "";
   $upit = $app['pdo']->prepare('SELECT * FROM prijave');
   $upit->execute();
   $prijave = array();
