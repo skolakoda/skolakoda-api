@@ -18,7 +18,7 @@ $app->register(
 /* GET */
 
 $app->get('/korisnici', function() use($app) {
-  if ($_GET["lozinka"] != getenv('LOZINKA')) return;
+  if ($_GET["lozinka"] != getenv('LOZINKA')) return "";
   $upit = $app['pdo']->prepare('SELECT * FROM korisnici');
   $upit->execute();
   $korisnici = array();
