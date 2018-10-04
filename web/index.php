@@ -109,8 +109,7 @@ $app->post('/prijava', function() use($app) {
 });
 
 $app->post('/brisanje', function() use($app) {
-  $lozinka = $_POST["lozinka"];
-  if ($lozinka != 'engine-3D') return "Lozinka nije ispravna";
+  if ($_POST["lozinka"] != getenv('LOZINKA')) return "Lozinka nije ispravna";
 
   $prijava_id = $_POST["prijava_id"];
   $upit = $app['pdo']->prepare("DELETE FROM prijave WHERE id='$prijava_id';");
@@ -119,8 +118,7 @@ $app->post('/brisanje', function() use($app) {
 });
 
 $app->post('/azurira-javljeno', function() use($app) {
-  $lozinka = $_POST["lozinka"];
-  if ($lozinka != 'engine-3D') return "Lozinka nije ispravna";
+  if ($_POST["lozinka"] != getenv('LOZINKA')) return "Lozinka nije ispravna";
 
   $prijava_id = $_POST["prijava_id"];
   $javljeno = $_POST["javljeno"];
