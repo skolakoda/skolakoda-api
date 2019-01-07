@@ -67,7 +67,6 @@ $app->post('/prijava', function() use($app) {
   $telefon = $_POST["telefon"];
   $email = $_POST["email"];
   $kurs = $_POST["kurs"];
-  $uzivo = $_POST["uzivo"];
 
   $azurira_korisnika = "UPDATE korisnici
     SET (ime, telefon, prijavljen) = ('$ime','$telefon', TRUE)
@@ -94,7 +93,7 @@ $app->post('/prijava', function() use($app) {
   }
 
   $provera_prijave = $app['pdo']->prepare(
-    "SELECT * FROM prijave WHERE korisnik_id='$korisnik_id' AND kurs_id='$kurs' AND uzivo='$uzivo' LIMIT 1;"
+    "SELECT * FROM prijave WHERE korisnik_id='$korisnik_id' AND kurs_id='$kurs' AND javljeno=false LIMIT 1;"
   );
   $provera_prijave->execute();
   $ranija_prijava = $provera_prijave->fetch(PDO::FETCH_ASSOC);
@@ -104,7 +103,7 @@ $app->post('/prijava', function() use($app) {
     return "Vec ste prijavljeni na ovaj kurs! Nazad na <a href='$referer'>$referer</a>";
   } else {
     $prijava = $app['pdo']->prepare(
-      "INSERT INTO prijave (korisnik_id, kurs_id, uzivo) values ('$korisnik_id', '$kurs', '$uzivo');"
+      "INSERT INTO prijave (korisnik_id, kurs_id) values ('$korisnik_id', '$kurs');"
     );
     $prijava->execute();
     return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
