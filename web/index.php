@@ -107,7 +107,6 @@ $app->post('/prijava', function() use($app) {
     "INSERT INTO prijave (korisnik_id, kurs_id) values ('$korisnik_id', '$kurs');"
   );
   $prijava->execute();
-  mail("mudroljub@gmail.com", "Nova prijava", "$ime\n$email\nKurs: $kurs");
   return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
 });
 
