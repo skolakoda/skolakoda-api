@@ -101,13 +101,14 @@ $app->post('/prijava', function() use($app) {
 
   if ($ranija_prijava) {
     return "Vec ste prijavljeni na ovaj kurs! Nazad na <a href='$referer'>$referer</a>";
-  } else {
-    $prijava = $app['pdo']->prepare(
-      "INSERT INTO prijave (korisnik_id, kurs_id) values ('$korisnik_id', '$kurs');"
-    );
-    $prijava->execute();
-    return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
   }
+
+  $prijava = $app['pdo']->prepare(
+    "INSERT INTO prijave (korisnik_id, kurs_id) values ('$korisnik_id', '$kurs');"
+  );
+  $prijava->execute();
+  mail("mudroljub@gmail.com", "Nova prijava", "$ime\n$email\nKurs: $kurs");
+  return "Hvala na prijavi! Nazad na <a href='$referer'>$referer</a>";
 });
 
 $app->post('/brisanje', function() use($app) {
