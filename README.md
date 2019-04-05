@@ -38,6 +38,12 @@ Opisuje tabelu:
 
 Za `SQL` komande mora `;` na kraju!
 
+Izlazak iz baze:
+
+```
+\q
+```
+
 ## TODO
 
 - ukinuti sve biblioteke
