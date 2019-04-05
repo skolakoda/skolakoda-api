@@ -1,11 +1,17 @@
 # Skolakoda API
 
+Back-end API Škole koda.
+
+## Razvoj
+
 Otvara [skolakoda-api.herokuapp.com](https://skolakoda-api.herokuapp.com/):
+
 ```
 heroku open
 ```
 
 Instalira zavisnosti na lokalu:
+
 ```
 composer install
 ```
@@ -25,6 +31,7 @@ heroku pg:psql
 ```
 
 Opisuje tabelu:
+
 ```
 \d+ korisnici
 ```
@@ -38,4 +45,3 @@ Za `SQL` komande mora `;` na kraju!
   - https://devcenter.heroku.com/articles/php-support
 - dodati mysql
   - https://scotch.io/@phalconVee/deploying-a-php-and-mysql-web-app-with-heroku
-
