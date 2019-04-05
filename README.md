@@ -1,6 +1,6 @@
 # Skolakoda API
 
-Back-end API Škole koda.
+Backend API Škole koda.
 
 ## Razvoj
 
